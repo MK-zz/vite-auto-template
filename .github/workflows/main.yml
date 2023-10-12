@@ -1,0 +1,27 @@
+name: GitHub Auto To Gitee
+on: [push]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@master
+
+    - name: Set up Git credentials
+      run: |
+        git config --global user.email "991044552@qq.com"
+        git config --global user.name "Mk-zz"
+      shell: bash
+    - name: Convert shallow clone to deep clone
+      run: git fetch --depth=1000 # 从远程获取深度为1000的历史记录
+
+    - name: Sync to Gitee
+      run: |
+        git remote add gitee https://${{secrets.GITEE_USERNAME}}:${{secrets.GITEE_PASSWORD}}@gitee.com/xiaotaibai123/vite-auto-template.git
+        git fetch --all
+        git show-ref
+        git branch --verbose
+        git push gitee main:master
+      shell: bash

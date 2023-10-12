@@ -1,0 +1,38 @@
+{
+  "name": "vite-auto-template",
+  "version": "0.0.7",
+  "description": "Automatic template generation.",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "mk <991044552@qq.com>",
+  "scripts": {
+    "build": "tsup-node && pnpm build-extra",
+    "build-extra": "cpx \"src/**/*.ejs\" dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [],
+  "license": "ISC",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "devDependencies": {
+    "@types/ejs": "^3.1.3",
+    "@types/node": "^20.6.5",
+    "cpx2": "^5.0.0",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "ejs": "^3.1.9",
+    "vite": "^4.4.9"
+  }
+}
