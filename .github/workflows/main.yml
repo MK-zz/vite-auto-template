@@ -10,7 +10,7 @@ jobs:
       uses: actions/checkout@master
 
     - name: Set up Git credentials
-      run: |
+      run: | 
         git config --global user.email "991044552@qq.com"
         git config --global user.name "Mk-zz"
       shell: bash
