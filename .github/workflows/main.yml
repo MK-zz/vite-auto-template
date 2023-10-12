@@ -23,5 +23,5 @@ jobs:
         git fetch --all
         git show-ref
         git branch --verbose
-        git push gitee main:master
+        git push -f gitee main:master
       shell: bash
