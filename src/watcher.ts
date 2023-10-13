@@ -1,55 +1,31 @@
-import chokidar from 'chokidar'
-import { platform } from 'os';
-import { renderFile } from 'ejs'
-import { capitalizeFirstWord, convertPath, createFile, createMkdir } from './tool';
-import path from 'path';
+import chokidar, { FSWatcher } from 'chokidar'
+import {  getPlatform, getWatcherPath, getEndName, recursionWrite, getNamingTypes } from './tool';
 import { data } from './componentsCofing';
 import { readdirSync } from 'fs';
-const ROOT = process.cwd()
-
-const map = { path: '/index.vue', type: 'vue', ejs: `${ROOT}/_vac_template/template.vue.ejs` }
-export default function watcher() {
-  const obj: { [key: string]: { dir: string[], template: string } } = {}
-  const c = data.vitePaths.map((v) => {
-    if (typeof v === 'string') return v
-    const { path, dir, template } = v
-    const split = path.split(`${platform() === 'win32' ? '\\' : '/'}`)
-    obj[split[split.length - 1]] = { dir: dir || [], template: template || '' }
-    return path
-  })
-  const watcher = chokidar.watch(c, { ignoreInitial: true , depth: 0});
-  watcher.on('addDir', (p) => {
-    // 区分是什么系统
-    const split = p.split(`${platform() === 'win32' ? '\\' : '/'}`)
-    createDist(split[split.length - 1], p, split[split.length - 2])
-    return
-
-  });
-  async function createDist(name: string, path: string, dir: string) {
-    let ejsPath = map.ejs
-    for (const key in obj) {
-      if (key === dir) {
-        for (const v of obj[key]['dir']) {
-          await createMkdir(`${path}/${v}`)
-        }
-        ejsPath = await theEjs(obj[key]['template'])
-      }
-    }
-    data.dMap.push({ key: capitalizeFirstWord(name), value: `./${dir}/${name}/${capitalizeFirstWord(name)}.vue` })
-    createFile(
-      `${path}/${capitalizeFirstWord(name)}.vue`,
-      await renderFile(
-        ejsPath, //读取ejs 数据
-        {
-          // 生成入口名称
-          name: `${capitalizeFirstWord(name)}Vue`
-        }
-      )
-    )
-  }
-
+export let watcher: FSWatcher | undefined
+export function createWatcher() {
+    watcher = chokidar.watch(getWatcherPath(), { ignoreInitial: true, depth: 0 });
+    watcher.on('addDir', (p) => {
+        if (readdirSync(p).length > 0) return
+        // 区分是什么系统
+        const split = p.split(`${getPlatform()}`)
+        createDist(split[split.length - 1], p, split[split.length - 2])
+    });
 }
-async function theEjs(s?: string) {
-  if (s) return path.normalize(convertPath(s))
-  return map.ejs
+
+async function createDist(name: string, path: string, dir: string) {
+    const { vitePaths, theDir, root } = data
+    const v = vitePaths.find(({ path }) => getEndName(path) === dir) as PathInfo
+    const {targetDir} = v
+    const namingTypes:NamingTypes = getNamingTypes(name,v)
+    if (targetDir === 'default') {
+        // 使用默认模板
+        recursionWrite(`${root}/${theDir}/${targetDir}`, path, getEndName(path),namingTypes)
+        return
+    }
+    if (readdirSync(`${root}/${theDir}`).includes(targetDir)) {
+        recursionWrite(`${root}/${theDir}/${targetDir}`,path,name,namingTypes)
+        return
+    }
+    recursionWrite(`${root}/${theDir}/default`, path, name,namingTypes)
 }
