@@ -1,6 +1,6 @@
 {
   "name": "vite-auto-template",
-  "version": "0.0.7",
+  "version": "1.0.0",
   "description": "Automatic template generation.",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -14,8 +14,16 @@
   "files": [
     "dist"
   ],
-  "keywords": [],
+  "keywords": ["vite","transform","auto","template"],
   "license": "ISC",
+  "homepage": "https://github.com/MK-zz/vite-auto-template#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MK-zz/vite-auto-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MK-zz/vite-auto-template/issues"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
