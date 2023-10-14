@@ -59,6 +59,15 @@ export default defineConfig({
     | pcname  | `StringOrStringFunction`|非必填|大驼峰命名占位符|
     | ccname  | `StringOrStringFunction`|非必填|小驼峰命名占位符|
 - StringOrStringFunction `string|((originName:string) => string)`
+  
+## Ejs 模板说明
+|  名称   | 类型  |描述|
+|  ----  | ----  |--|
+| oname  | `string`|原始命名占位符|
+| hname  | `string`|横杠命名占位符|
+| uname  | `string`|下划线命名占位符|
+| pcname  | `string`|大驼峰命名占位符|
+| ccname  | `string`|小驼峰命名占位符|
 
 ## 进阶用法案例
 - 字符串 
@@ -104,7 +113,10 @@ export default defineConfig({
       }
     )
     ```
-    
+
+## 更新日志
+- **v1.0.0** :支持自定义命名规范，支持更多自定义模板
+
 ## 其他插件
 | 名称| 描述|
 | ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |

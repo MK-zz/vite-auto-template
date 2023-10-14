@@ -58,6 +58,16 @@ export default defineConfig({
     | ccname  | `StringOrStringFunction`|false|camelCase Naming Placeholder|
 - StringOrStringFunction `string|((originName:string) => string)`
 
+## Ejs 模板说明
+|  Name    | Type   |Description|
+|  ----  | ----  |--|
+| oname  | `string`|Original Naming Placeholder|
+| hname  | `string`|Hyphenated Naming Placeholder|
+| uname  | `string`|Underscore Naming Placeholder|
+| pcname  | `string`|PascalCase Naming Placeholder|
+| ccname  | `string`|camelCase Naming Placeholder|
+
+
 ## Advanced Usage Examples
 - string 
     ``` ts
@@ -102,7 +112,10 @@ export default defineConfig({
       }
     )
     ```
-    
+
+## Changelog
+- **v1.0.0** :Supports Custom Naming Conventions and Additional Custom Templates.
+
 ## 其他插件
 | Name| Description|
 | ---------------------------------------------------------------------- | ------------------------------------------------------------------------ |
