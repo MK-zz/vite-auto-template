@@ -1,6 +1,6 @@
 {
   "name": "vite-auto-template",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Automatic template generation.",
   "main": "dist/index.js",
   "module": "dist/index.js",

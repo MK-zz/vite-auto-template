@@ -58,7 +58,7 @@ export default defineConfig({
     | ccname  | `StringOrStringFunction`|false|camelCase Naming Placeholder|
 - StringOrStringFunction `string|((originName:string) => string)`
 
-## Ejs 模板说明
+## EJS Template Explanation
 |  Name    | Type   |Description|
 |  ----  | ----  |--|
 | oname  | `string`|Original Naming Placeholder|
@@ -67,6 +67,12 @@ export default defineConfig({
 | pcname  | `string`|PascalCase Naming Placeholder|
 | ccname  | `string`|camelCase Naming Placeholder|
 
+## Notes
+|  Name  |Description|
+|  ----  |--|
+| [xxx].vue.ejs  | Use `[]` to represent the folder name inherited during creation.|
+| index.ts.ejs  | Not using [] represents using the current name.|
+| index.ts  |  Files without the `ejs` extension will be copied directly.|
 
 ## Advanced Usage Examples
 - string 

@@ -69,6 +69,14 @@ export default defineConfig({
 | pcname  | `string`|大驼峰命名占位符|
 | ccname  | `string`|小驼峰命名占位符|
 
+
+## 注意事项
+|  名称  |描述|
+|  ----  |--|
+| [xxx].vue.ejs  | 使用`[]`代表继承创建时的文件夹名称|
+| index.ts.ejs  | 没有使用`[]`代表使用当前名称|
+| index.ts  |  没有`ejs`后缀会直接拷贝|
+
 ## 进阶用法案例
 - 字符串 
     ``` ts
