@@ -11,7 +11,7 @@
 
 ## 效果展示
 
-![vite-auto.template.gif](https://gitee.com/xiaotaibai123/vite-auto-template/blob/master/public/vite-auto.template.gif)
+![vite-auto.template.gif](https://gitee.com/xiaotaibai123/vite-auto-template/raw/master/public/vite-auto.template.gif)
 
 ## 安装
 
