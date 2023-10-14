@@ -1,5 +1,7 @@
 `vite-auto-template` This is a plugin designed specifically for the Vite build tool, and its main function is to automatically monitor changes in specified folders and generate specific template files. The purpose of this plugin is to provide a convenient way for developers to automatically generate template files during the project development process, thereby improving work efficiency.
 
+[中文](/README.md)
+
 ## The core functionality of the plugin
 
 *   **Automatic folder monitoring** It automatically monitors the folders you specify, with a focus on detecting changes as soon as a new folder is created. Once a new folder appears, the plugin automatically responds and triggers the generation of specific templates.
