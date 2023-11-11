@@ -8,7 +8,15 @@ export const data = {
     alias: [] as Alias[],
     root: process.cwd(),
     dMap: [] as { key: string, value: string }[],
-    dirname: __dirname || path.dirname(fileURLToPath(import.meta.url)),
-    theDir:'_vac_template',
-    watcher:{} as FSWatcher |undefined
+    dirname: getDirname(),
+    theDir: '_vac_template',
+    watcher: {} as FSWatcher | undefined
+}
+
+function getDirname() {
+    try {
+        return __dirname
+    } catch (error) {
+        return path.dirname(fileURLToPath(import.meta.url))
+    }
 }
